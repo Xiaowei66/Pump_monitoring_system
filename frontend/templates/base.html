@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IOT</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/bootstrap.min.css') }}">
+    <script src="{{ url_for('static',filename = 'js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/raphael-2.1.4.min.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/justgage.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/highcharts.js') }}"></script>
+    <script src="{{ url_for('static',filename = 'js/exporting.js') }}"></script>
+    {#    <link rel="stylesheet" href="https://bootswatch.com/4/litera/bootstrap.min.css" type="text/css">#}
+    {#  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/themes/prism-okaidia.min.css">#}
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="{% if bar and bar == "status" %}active{% else %}nav-item{% endif %}"><a href="{{ url_for("status") }}">States</a></li>
+                <li class="{% if bar and bar == "index" %}active{% else %}nav-item{% endif %}"><a href="{{ url_for("index") }}">Real Time</a></li>
+                <li class="{% if bar and bar == "history" %}active{% else %}nav-item{% endif %}"><a href="{{ url_for("history") }}">History</a></li>
+                <li class="{% if bar and bar == "analysis" %}active{% else %}nav-item{% endif %}"><a href="{{ url_for("analysis") }}">Analysis</a></li>
+                <li class="{% if bar and bar == "prediction" %}active{% else %}nav-item{% endif %}"><a href="{{ url_for("prediction") }}">Prediction</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" id="login_base" style="display: none">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("login") }}">Login</a>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right" style="display: none" id="logout">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for("drop_token") }}">Logout</a>
+                </li>
+            </ul>
+
+
+        </div>
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+
+</body>
+<script>
+    if (!window.localStorage.getItem("token")) {
+        $("#login_base").show();
+    }
+
+    $("#logout").click(function () {
+        $("#logout").hide();
+        $("#login_base").show();
+        window.localStorage.clear();
+    })
+</script>
+</html>
+

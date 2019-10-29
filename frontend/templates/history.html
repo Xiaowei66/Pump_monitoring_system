@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="container">
+                    <ul class="nav nav-tabs" style="margin-bottom: 2%">
+                       <li class="{% if (not id) or (id == "7037") %}active{% endif %}">
+                         <a id="7037" class="nav-link " onclick="change(7037)">7037</a>
+                       </li>
+                       <li class="{% if id and (id == "3744") %}active{% endif %}">
+                         <a id="3744" class="nav-link" onclick="change(3744)" >3744</a>
+                       </li>
+                       <li class="{% if id and (id == "3743") %}active{% endif %}">
+                         <a id="3743" class="nav-link" onclick="change(3743)">3743</a>
+                       </li>
+                       <li class="{% if id and (id == "3723") %}active{% endif %}">
+                         <a id="3723" class="nav-link" onclick="change(3723)">3723</a>
+                       </li>
+                       <li class="{% if id and (id == "1137") %}active{% endif %}">
+                         <a id="1137" class="nav-link" onclick="change(1137)">1137</a>
+                       </li>
+                        <li class="{% if id and (id == "5134") %}active{% endif %}">
+                         <a id="5134" class="nav-link" onclick="change(5134)">5134</a>
+                        </li>
+                        <li class="{% if id and (id == "3677") %}active{% endif %}">
+                         <a id="3677" class="nav-link" onclick="change(3677)">3677</a>
+                        </li>
+                        <li class="{% if id and (id == "3673") %}active{% endif %}">
+                         <a id="3673" class="nav-link" onclick="change(3673)">3673</a>
+                        </li>
+                        <li class="{% if id and (id == "3644") %}active{% endif %}">
+                         <a id="3644" class="nav-link" onclick="change(3644)">3644</a>
+                        </li>
+                        <li class="{% if id and (id == "3642") %}active{% endif %}">
+                         <a id="3642" class="nav-link" onclick="change(3642)">3642</a>
+                        </li>
+                     </ul>
+                    <h2>Water pump's last 12 hours data</h2>
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-4" style="width: 500px;" type="text" id="searchdata" placeholder="Please enter the date as YYYY-MM-DD">
+                        <button class="btn btn-success" type="button" id="search">Search</button>
+                    </form>
+
+
+                    <h3 id="pump_id"></h3>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="container">
+                    <div id="tempChart"> </div>
+                    <div id="speedChart"> </div>
+                    <div id="outputChart"> </div>
+                    <div id="vaChart"> </div>
+                    <div id="vrChart"> </div>
+                    <div id="vtChart"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input style="display: none" id="current_pump" value="{% if not id %}7037{% else %}{{ id }}{% endif %}" >
+
+    <script src="{{ url_for('static', filename = 'js/his.js') }}">
+    </script>
+{% endblock %}

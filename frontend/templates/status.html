@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block body %}
+
+    <div class="container" style="font-size: large">
+      <h2>This page shows the status of pump.</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pump ID</th>
+            <th>Address</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="pumps">
+
+        </tbody>
+      </table>
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/status.js') }}">
+
+<<<<<<< HEAD
+=======
+    function get_status() {
+        try {
+            $.get('http://127.0.0.1:8500/status', function (data, status) {
+                var html = "";
+                for (i = 0; i < data.length; i ++) {
+                    var status = "success";
+                    var html_status = "Normal";
+                    if (data[i].error === 0) {
+                        status = "warning";
+                        html_status = "Warning"
+                    } else if (data[i].error === -1) {
+                        status = "danger";
+                        html_status = "Abnormal"
+                    }
+
+                    html += "<tr class=\"" + status + "\">";
+                    html += "<td> <a  href=\"/status/" + data[i].id + "\">Pump " + data[i].id + "</a></td>";
+                    html += "<td>" + data[i].address + "</td>";
+                    html += "<td>" + html_status + "</td>";
+                    html += "</tr>";
+
+                }
+
+                $("#pumps").html(html);
+
+            }).fail(function () {
+                    clearInterval(t);
+            });
+        }catch (e) {
+
+        }
+    }
+    get_status();
+    var t = setInterval(get_status, 2000);
+>>>>>>> f76f88ab3c83a71ce2c8f16ff251deb60285adcc
+    </script>
+{% endblock %}

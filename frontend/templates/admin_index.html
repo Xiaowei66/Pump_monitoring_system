@@ -1,0 +1,40 @@
+{% extends "dashboard.html" %}
+{% block body %}
+<div class="overlay"></div>
+    <style>
+        .form {
+            position: relative;
+            z-index: 1;
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+    </style>
+    <div class="wrapper" style="background-color: white">
+        <div style="background-color: white">
+            <div class="login-page" style="margin-top: 30px">
+                <div class="form">
+                    {% if mes %}
+                        {{ mes }}
+                    {% endif %}
+
+                    {% if err %}
+                        {{ err }}
+                    {% endif %}
+                    <form class="login-form", method="post">
+                        <input type="text" placeholder="phone number" name="phone" class="form-control"
+                               style="margin-bottom: 15px; height: 50px" id="username">
+
+                        <input type="password" placeholder="password" name="password" class="form-control"
+                               style="margin-bottom: 15px; height: 50px" id="password">
+
+                        <button id="login" type="submit" name="login" class="button1 btn-lg" style="width: 100%">Regist</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

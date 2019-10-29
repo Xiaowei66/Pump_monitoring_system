@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block body %}
+
+
+
+    <div class="container" style="font-size: large">
+      <h2>This page shows the probability of pump damage.</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pump ID</th>
+            <th>Address</th>
+            <th>Probability</th>
+          </tr>
+        </thead>
+        <tbody id="pre">
+        </tbody>
+      </table>
+    </div>
+
+    <script src="{{ url_for('static', filename = 'js/predic.js') }}">
+
+<<<<<<< HEAD
+=======
+                // console.log(data);
+
+                for (var i  = 0; i < data.length; i ++ ){
+                    var res = data[i];
+                    var status = "success";
+                    var html = "";
+                    if (res.probability >= 40 && res.probability < 70) {
+                        status = "warning";
+                    } else if (res.probability >= 70) {
+                        status = "danger";
+                    }
+
+                    html += "<tr class=\"" + status + "\">";
+                    html += "<td> <a  href=\"history/" + data[i].id + "\">Pump " + data[i].id + "</a></td>";
+                    html += "<td>" + res.address + "</td>";
+                    html += "<td>" + res.probability + "%</td>";
+                    html += "</tr>";
+                    $("#pre").append(html);
+                }
+            });
+        } catch (e) {
+            clearInterval(t);
+        }
+    }
+
+
+    predirection();
+    var t = setInterval(predirection, 5000);
+>>>>>>> f76f88ab3c83a71ce2c8f16ff251deb60285adcc
+    // var t = setInterval(predirection, 2000);
+    </script>
+{% endblock %}
